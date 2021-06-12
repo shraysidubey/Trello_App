@@ -104,7 +104,20 @@ def bank_details(request):
             bank_details.user_profile = user_profile
             bank_details.save()
             print "successfully saved"
-            return  JsonResponse({'status': 200,  'message': 'successfully saved'})
+            return JsonResponse({'status': 200,  'message': 'successfully saved'})
+
+        if request.method == 'GET':
+            try:
+                user_profile = UserProfile.objects.get(user=request.user)
+                bank_details = Bank.objects.get(user_profile=user_profile)
+                return JsonResponse(
+                    {'status': 200, 'card_holder_name': bank_details.card_holder_name, 'cvv': bank_details.cvv,
+                    'expiry_date': bank_details.expiry_date})
+
+            except Bank.DoesNotExist:
+                return JsonResponse({'status': 0,'message': 'bank details not found'})
+
     except Exception as e:
+        print "ERROR TRACEBACK ", traceback.print_exc()
         print "there is an exception:  " + type(e).__name__
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})

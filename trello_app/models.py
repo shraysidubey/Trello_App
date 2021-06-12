@@ -24,6 +24,7 @@ class UserProfile(models.Model):
 class Board(models.Model):
     user_profile = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=300)
+    created_at = models.DateTimeField()
 
     def __unicode__(self):
         return self.title
@@ -31,23 +32,25 @@ class Board(models.Model):
 
 class List(models.Model):
     board = models.ForeignKey(Board)
-    lst_title = models.CharField(max_length=300)
+    title = models.CharField(max_length=300)
+    created_at = models.DateTimeField()
 
     def __unicode__(self):
-        return self.lst_title
+        return self.title
 
 
 class Card(models.Model):
     list = models.ForeignKey(List)
-    card_title = models.CharField(max_length=300)
+    title = models.CharField(max_length=300)
     description = models.TextField(max_length=300)
 
     def __unicode__(self):
-        return self.card_title
+        return self.title
 
 
 class Bank(models.Model):
-    card_holder_name = models.ForeignKey(UserProfile, unique=True)
+    user_profile = models.ForeignKey(UserProfile, unique=True)
+    card_holder_name = models.CharField(max_length=200)
     cvv = models.IntegerField()
     expiry_date = models.DateTimeField()
 

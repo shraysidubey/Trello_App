@@ -1,4 +1,4 @@
-from trello_app.models import UserProfile, User
+from trello_app.models import UserProfile, User, Bank
 import requests, json
 from django.http import JsonResponse
 from django.db import IntegrityError
@@ -6,6 +6,7 @@ import traceback
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from datetime import datetime
 
 
 '''
@@ -13,6 +14,7 @@ status_codes:
     error from database: 1
     object not found: 0
 
+    
 '''
 
 def is_blank(S):
@@ -76,3 +78,33 @@ def profile(request, user_id):
 
     except UserProfile.DoesNotExist:
         return JsonResponse({'status': 0,'message': 'user not found'})
+
+
+@api_view(['GET','POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def bank_details(request):
+    try:
+        if request.method == 'POST':
+            json_data = json.loads(request.body)
+            print json_data
+            if is_blank(json_data.get("card_holder_name")) or is_blank(json_data.get("cvv")) or is_blank(json_data.get("expiry_date")):
+                return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected keys are: [card_holder_name, cvv, expiry_date]'})
+
+            user_profile = UserProfile.objects.get(user=request.user)
+
+            bank_details = Bank()
+            bank_details.card_holder_name = json_data.get("card_holder_name")
+            bank_details.cvv = json_data.get("cvv")
+            date_string = json_data.get("expiry_date")
+            date_format = "%Y-%m"
+            date_object = datetime.strptime(date_string, date_format)
+
+            bank_details.expiry_date = date_object
+            bank_details.user_profile = user_profile
+            bank_details.save()
+            print "successfully saved"
+            return  JsonResponse({'status': 200,  'message': 'successfully saved'})
+    except Exception as e:
+        print "there is an exception:  " + type(e).__name__
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})

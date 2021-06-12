@@ -32,6 +32,7 @@ class Board(models.Model):
 
 class List(models.Model):
     board = models.ForeignKey(Board)
+    created_by = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=300)
     created_at = models.DateTimeField()
 

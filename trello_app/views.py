@@ -1,4 +1,4 @@
-from trello_app.models import UserProfile, User, Bank
+from trello_app.models import UserProfile, User, Bank, Board, List
 import requests, json
 from django.http import JsonResponse
 from django.db import IntegrityError
@@ -121,3 +121,54 @@ def bank_details(request):
         print "ERROR TRACEBACK ", traceback.print_exc()
         print "there is an exception:  " + type(e).__name__
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
+
+
+@api_view(['GET','POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def board(request):
+    print "tatti"
+    try:
+        if request.method == 'POST':
+            json_data = json.loads(request.body)
+            print json_data
+            if is_blank(json_data.get("title")):
+                return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected key in JSON:["title"]'})
+            user_profile = UserProfile.objects.get(user=request.user)
+
+            board = Board()
+            board.title = json_data.get("title")
+            board.created_at = datetime.now()
+            board.user_profile = user_profile
+            board.save()
+
+            list_obj_1 = List()
+            list_obj_2 = List()
+            list_obj_3 = List()
+            list_obj_1.title = "To Do"
+            list_obj_2.title = "Doing"
+            list_obj_3.title = "Done"
+            list_obj_1.created_at = datetime.now()
+            list_obj_2.created_at = datetime.now()
+            list_obj_3.created_at = datetime.now()
+
+            list_obj_1.created_by = user_profile
+            list_obj_1.board = board
+            list_obj_1.save()
+
+            list_obj_2.created_by = user_profile
+            list_obj_2.board = board
+            list_obj_2.save()
+
+            list_obj_3.created_by = user_profile
+            list_obj_3.board = board
+            list_obj_3.save()
+
+            print "successfully saved"
+            return JsonResponse({'status':200, 'message':"successfully saved"})
+
+    except Exception as e:
+        print "ERROR TRACEBACK ", traceback.print_exc()
+        print "ERROR TRACEBACK ", traceback.print_exc()
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
+

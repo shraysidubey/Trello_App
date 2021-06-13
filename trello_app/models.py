@@ -42,6 +42,8 @@ class List(models.Model):
 
 class Card(models.Model):
     list = models.ForeignKey(List)
+    created_by = models.ForeignKey(UserProfile)
+    created_at = models.DateTimeField()
     title = models.CharField(max_length=300)
     description = models.TextField(max_length=300)
 

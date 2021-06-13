@@ -1,4 +1,4 @@
-from trello_app.models import UserProfile, User, Bank, Board, List
+from trello_app.models import UserProfile, User, Bank, Board, List, Card
 import requests, json
 from django.http import JsonResponse
 from django.db import IntegrityError
@@ -118,7 +118,7 @@ def bank_details(request):
                 return JsonResponse({'status': 0,'message': 'bank details not found'})
 
     except Exception as e:
-        print "ERROR TRACEBACK ", traceback.print_exc()
+        #print "ERROR TRACEBACK ", traceback.print_exc()
         print "there is an exception:  " + type(e).__name__
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
 
@@ -127,7 +127,6 @@ def bank_details(request):
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 def board(request):
-    print "tatti"
     try:
         if request.method == 'POST':
             json_data = json.loads(request.body)
@@ -168,7 +167,32 @@ def board(request):
             return JsonResponse({'status':200, 'message':"successfully saved"})
 
     except Exception as e:
-        print "ERROR TRACEBACK ", traceback.print_exc()
-        print "ERROR TRACEBACK ", traceback.print_exc()
+        #print "ERROR TRACEBACK ", traceback.print_exc()
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
 
+
+@api_view(['GET','POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def get_lst(request, board_id):
+    try:
+        if request.method == 'POST':
+            json_data = json.loads(request.body)
+
+            if is_blank(json_data.get("title")):
+                return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected key in JSON:["title"]'})
+
+            user_profile = UserProfile.objects.get(user=request.user)
+            board = Board.objects.get(id=board_id)
+
+            list_obj = List()
+            list_obj.title = json_data.get("title")
+            list_obj.created_at = datetime.now()
+            list_obj.created_by = user_profile
+            list_obj.board = board
+            list_obj.save()
+
+            return JsonResponse({'status': 200, 'message': "successfully saved"})
+
+    except Exception as e:
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})

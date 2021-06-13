@@ -8,4 +8,6 @@ urlpatterns = patterns('',
         url(r'^user/(?P<user_id>[\w\-]+)/$', views.profile, name='profile'),
         url(r'^bank_details/$', views.bank_details, name='bank_details'),
         url(r'^board/$', views.board, name='board'),
-                       )
+        url(r'^board/(?P<board_id>[\w\-]+)/$', views.get_lst, name='get_lst'),
+                    )
+

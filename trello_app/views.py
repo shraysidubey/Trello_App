@@ -1,5 +1,5 @@
-from trello_app.models import UserProfile, User, Bank, Board, List, Card
-import requests, json
+from trello_app.models import UserProfile, User, Bank, Board, List, Card, Attachement
+import json
 from django.http import JsonResponse
 from django.db import IntegrityError
 import traceback
@@ -99,7 +99,6 @@ def bank_details(request):
             date_string = json_data.get("expiry_date")
             date_format = "%Y-%m"
             date_object = datetime.strptime(date_string, date_format)
-
             bank_details.expiry_date = date_object
             bank_details.user_profile = user_profile
             bank_details.save()
@@ -215,6 +214,10 @@ def get_crad(request, lst_id):
             card_obj = Card()
             card_obj.title = json_data.get("title")
             card_obj.description = json_data.get("description")
+            date_string = json_data.get("due_date")
+            date_format = "%Y-%m-%d"
+            date_object = datetime.strptime(date_string, date_format)
+            card_obj.due_date = date_object
             card_obj.created_at = datetime.now()
             card_obj.created_by = user_profile
             card_obj.list = lst
@@ -227,3 +230,29 @@ def get_crad(request, lst_id):
         print "ERROR TRACEBACK ", traceback.print_exc()
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
 
+
+@api_view(['GET','POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def add_attachements(request, card_id):
+    print "checking"
+    try:
+        if request.method == 'POST':
+            json_data = json.loads(request.body)
+            print json_data
+
+            user_profile = UserProfile.objects.get(user=request.user)
+            card = Card.objects.get(id=card_id)
+            links = json_data.get("attachements")
+            for link in links:
+                attachment_obj = Attachement()
+                attachment_obj.link = link
+                attachment_obj.attached_at = datetime.now()
+                attachment_obj.card = card
+                attachment_obj.user_profile = user_profile
+                attachment_obj.save()
+                print "successfully saved"
+            return JsonResponse({'status': 200, 'message': "attachements added"})
+
+    except Exception as e:
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})

@@ -45,7 +45,8 @@ class Card(models.Model):
     created_by = models.ForeignKey(UserProfile)
     created_at = models.DateTimeField()
     title = models.CharField(max_length=300)
-    description = models.TextField(max_length=300)
+    description = models.TextField(max_length=300, default="")
+    due_date = models.DateTimeField()
 
     def __unicode__(self):
         return self.title
@@ -59,3 +60,13 @@ class Bank(models.Model):
 
     def __unicode__(self):
         return self.card_holder_name
+
+
+class Attachement(models.Model):
+    user_profile = models.ForeignKey(UserProfile)
+    card = models.ForeignKey(Card)
+    link = models.URLField(max_length=520, default="")
+    attached_at = models.DateTimeField()
+
+    def __unicode__(self):
+        return self.link

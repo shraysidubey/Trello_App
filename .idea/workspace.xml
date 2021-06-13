@@ -101,8 +101,11 @@
       <change afterPath="$PROJECT_DIR$/../car_rental_system/car_rental_system/templates/car_booking_app/profile.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../car_rental_system/car_rental_system/templates/car_booking_app/register.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../car_rental_system/car_rental_system/templates/car_booking_app/user_history.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/DeLL.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/trello_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/trello_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trello_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/trello_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trello_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/trello_app/views.py" afterDir="false" />
     </list>
@@ -117,11 +120,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trello_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="295">
+              <caret line="64" column="18" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="18" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trello_app/migrations/0011_auto_20210613_1828.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -133,11 +145,6 @@
               <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db.sqlite3">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -171,20 +178,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/trello_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="215" column="51" lean-forward="true" selection-start-line="215" selection-start-column="51" selection-end-line="215" selection-end-column="51" />
+            <state relative-caret-position="339">
+              <caret line="254" column="72" selection-start-line="254" selection-start-column="72" selection-end-line="254" selection-end-column="72" />
               <folding>
-                <element signature="e#0#66#0" expanded="true" />
+                <element signature="e#0#86#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python27/Lib/site-packages/django/db/backends/utils.py">
+        <entry file="file://$PROJECT_DIR$/trello_app/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-723">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="136">
+              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -192,8 +202,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trello_app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="272">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -224,27 +234,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/trello_app/admin.py" />
         <option value="$PROJECT_DIR$/trello/urls.py" />
         <option value="$PROJECT_DIR$/trello/settings.py" />
         <option value="$PROJECT_DIR$/trello_app/migrations/0003_auto_20210612_1804.py" />
         <option value="$PROJECT_DIR$/trello_app/migrations/0006_list_created_by.py" />
         <option value="$PROJECT_DIR$/trello_app/migrations/0007_auto_20210613_1410.py" />
-        <option value="$PROJECT_DIR$/trello_app/views.py" />
+        <option value="$PROJECT_DIR$/trello_app/migrations/0007_auto_20210613_1438.py" />
         <option value="$PROJECT_DIR$/trello_app/urls.py" />
         <option value="$PROJECT_DIR$/trello_app/models.py" />
-        <option value="$PROJECT_DIR$/trello_app/migrations/0007_auto_20210613_1438.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/trello.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/../car_rental_system/car_rental_system/.idea/car_rental_system.iml" />
+        <option value="$PROJECT_DIR$/trello_app/admin.py" />
+        <option value="$PROJECT_DIR$/trello_app/views.py" />
       </list>
     </option>
   </component>
@@ -276,12 +275,6 @@
               <item name="trello" type="b2602c69:ProjectViewProjectNode" />
               <item name="trello" type="462c0819:PsiDirectoryNode" />
               <item name="trello_app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trello" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trello" type="462c0819:PsiDirectoryNode" />
-              <item name="trello_app" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -339,7 +332,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49925596" visible="true" weight="0.5319149" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49925596" visible="true" weight="0.049099836" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50074404" side_tool="true" weight="0.68085104" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -348,16 +341,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/trello_app/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/trello/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -428,10 +411,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/trello_app/migrations/0007_auto_20210613_1438.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trello_app/migrations/0011_auto_20210613_1828.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/trello_app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
@@ -440,27 +437,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/trello_app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="295">
+          <caret line="64" column="18" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="18" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trello_app/migrations/0007_auto_20210613_1438.py">
+    <entry file="file://$PROJECT_DIR$/trello_app/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="136">
+          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trello_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="215" column="51" lean-forward="true" selection-start-line="215" selection-start-column="51" selection-end-line="215" selection-end-column="51" />
+        <state relative-caret-position="339">
+          <caret line="254" column="72" selection-start-line="254" selection-start-column="72" selection-end-line="254" selection-end-column="72" />
           <folding>
-            <element signature="e#0#66#0" expanded="true" />
+            <element signature="e#0#86#0" expanded="true" />
           </folding>
         </state>
       </provider>

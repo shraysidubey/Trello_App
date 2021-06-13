@@ -9,5 +9,6 @@ urlpatterns = patterns('',
         url(r'^bank_details/$', views.bank_details, name='bank_details'),
         url(r'^board/$', views.board, name='board'),
         url(r'^board/(?P<board_id>[\w\-]+)/$', views.get_lst, name='get_lst'),
+        url(r'^list/(?P<lst_id>[\w\-]+)/$', views.get_crad, name='get_crad'),
                     )
 

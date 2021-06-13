@@ -196,3 +196,34 @@ def get_lst(request, board_id):
 
     except Exception as e:
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
+
+
+@api_view(['GET','POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def get_crad(request, lst_id):
+    try:
+        if request.method == 'POST':
+            json_data = json.loads(request.body)
+            print json_data
+            if is_blank(json_data.get("title")):
+                return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected key in JSON:["title"]'})
+
+            user_profile = UserProfile.objects.get(user=request.user)
+            lst = List.objects.get(id=lst_id)
+
+            card_obj = Card()
+            card_obj.title = json_data.get("title")
+            card_obj.description = json_data.get("description")
+            card_obj.created_at = datetime.now()
+            card_obj.created_by = user_profile
+            card_obj.list = lst
+            card_obj.save()
+            print "successfully saved"
+
+            return JsonResponse({'status': 200, 'message': "successfully saved"})
+
+    except Exception as e:
+        print "ERROR TRACEBACK ", traceback.print_exc()
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
+

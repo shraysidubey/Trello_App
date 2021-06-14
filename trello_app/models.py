@@ -47,6 +47,7 @@ class Card(models.Model):
     title = models.CharField(max_length=300)
     description = models.TextField(max_length=300, default="")
     due_date = models.DateTimeField()
+    position = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.title
@@ -70,3 +71,5 @@ class Attachement(models.Model):
 
     def __unicode__(self):
         return self.link
+
+

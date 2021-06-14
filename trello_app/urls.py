@@ -10,7 +10,6 @@ urlpatterns = patterns('',
         url(r'^board/$', views.board, name='board'),
         url(r'^board/(?P<board_id>[\w\-]+)/$', views.get_lst, name='get_lst'),
         url(r'^list/(?P<lst_id>[\w\-]+)/$', views.get_crad, name='get_crad'),
-        url(r'^card/(?P<card_id>[\w\-]+)/$', views.add_attachements, name='add_attachements'),
-
-                    )
-
+        url(r'^card/(?P<card_id>[\w\-]+)/attachement/$', views.add_attachements, name='add_attachements'),
+        url(r'^card/(?P<card_id>[\w\-]+)/$', views.deletion_of_card, name='deletion_of_card'),
+         )

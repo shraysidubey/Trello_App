@@ -210,9 +210,12 @@ def get_crad(request, lst_id):
 
             user_profile = UserProfile.objects.get(user=request.user)
             lst = List.objects.get(id=lst_id)
-
+            card_obj_for_count = Card.objects.filter(list=lst).count()
+            print "card_obj_for_count", card_obj_for_count
             card_obj = Card()
+
             card_obj.title = json_data.get("title")
+            card_obj.position = card_obj_for_count
             card_obj.description = json_data.get("description")
             date_string = json_data.get("due_date")
             date_format = "%Y-%m-%d"
@@ -244,6 +247,7 @@ def add_attachements(request, card_id):
             user_profile = UserProfile.objects.get(user=request.user)
             card = Card.objects.get(id=card_id)
             links = json_data.get("attachements")
+
             for link in links:
                 attachment_obj = Attachement()
                 attachment_obj.link = link
@@ -256,3 +260,19 @@ def add_attachements(request, card_id):
 
     except Exception as e:
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
+
+
+def deletion_of_card(request, card_id):
+    try:
+        card_obj = Card.objects.get(id=card_id)
+        card_position = card_obj.position
+        card_obj.delete()
+
+        card = Card.objects.filter(position__gt=card_position, list=card_obj.list)
+        for i in card:
+            i.position -= 1
+            i.save()
+        return JsonResponse({'status': 200, 'message': "card successfully deleted"})
+
+    except Card.DoesNotExist:
+        return JsonResponse({'status': 0, 'message': 'card not found'})

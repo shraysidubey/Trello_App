@@ -258,7 +258,7 @@ def add_attachements(request, card_id):
                 print "successfully saved"
             return JsonResponse({'status': 200, 'message': "attachements added"})
 
-    except Exception as e:
+    except  Exception as e:
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
 
 
@@ -276,3 +276,44 @@ def deletion_of_card(request, card_id):
 
     except Card.DoesNotExist:
         return JsonResponse({'status': 0, 'message': 'card not found'})
+
+
+@api_view(['GET','POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def change_card_position(request, card_id):
+    try:
+        card_obj = Card.objects.get(id=card_id)
+        current_position = card_obj.position
+        print "current_position", current_position
+
+        # fetching all cards after the current card
+        cards_in_source_list = Card.objects.filter(position__gte=current_position, list=card_obj.list)
+        for i in cards_in_source_list:
+            i.position -= 1
+            i.save()
+
+        json_data = json.loads(request.body)
+        destination_lst_id = json_data.get("destination_lst_id")
+        destination_position = json_data.get("destination_position")
+
+        destination_list_object = List.objects.get(id=destination_lst_id)
+        cards_in_destination_lst = Card.objects.filter(position__gte=destination_position, list=destination_list_object)
+        for i in cards_in_destination_lst:
+            i.position += 1
+            i.save()
+            print "i is saving"
+
+        card_obj.position = destination_position
+        card_obj.list = destination_list_object
+        card_obj.save()
+
+        return JsonResponse({'status': 200, 'message': "position of card is changed"})
+
+    except Card.DoesNotExist:
+        return JsonResponse({'status': 0, 'message': 'card not found'})
+
+    except Exception as e:
+        print "traceback erros", traceback.print_exc()
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
+

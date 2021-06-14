@@ -12,4 +12,5 @@ urlpatterns = patterns('',
         url(r'^list/(?P<lst_id>[\w\-]+)/$', views.get_crad, name='get_crad'),
         url(r'^card/(?P<card_id>[\w\-]+)/attachement/$', views.add_attachements, name='add_attachements'),
         url(r'^card/(?P<card_id>[\w\-]+)/$', views.deletion_of_card, name='deletion_of_card'),
+        url(r'^card/(?P<card_id>[\w\-]+)/change_position/$', views.change_card_position, name='change_card_position'),
          )

@@ -173,7 +173,7 @@ def board(request):
 @api_view(['GET','POST'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
-def get_lst(request, board_id):
+def create_lst(request, board_id):
     try:
         if request.method == 'POST':
             json_data = json.loads(request.body)
@@ -200,7 +200,7 @@ def get_lst(request, board_id):
 @api_view(['GET','POST'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
-def get_crad(request, lst_id):
+def create_card(request, lst_id):
     try:
         if request.method == 'POST':
             json_data = json.loads(request.body)
@@ -258,7 +258,7 @@ def add_attachements(request, card_id):
                 print "successfully saved"
             return JsonResponse({'status': 200, 'message': "attachements added"})
 
-    except  Exception as e:
+    except Exception as e:
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
 
 
@@ -316,4 +316,53 @@ def change_card_position(request, card_id):
     except Exception as e:
         print "traceback erros", traceback.print_exc()
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
+
+
+@api_view(['GET','POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def board_details(request, board_id):
+    try:
+        user_profile_obj = UserProfile.objects.get(user=request.user)
+        board_obj = Board.objects.get(id=board_id)
+
+        dic_of_board = {}
+        dic_of_board['title'] = board_obj.title
+        dic_of_board['created_at'] = board_obj.created_at
+        dic_of_board['created_by'] = user_profile_obj.alias
+        dic_of_board['created_by_id'] = user_profile_obj.id
+        dic_of_board['list'] = []
+        lst_objs = List.objects.filter(board=board_obj)
+        list = []
+        for list_obj in lst_objs:
+            dic_of_list = {}
+            dic_of_list['title'] = list_obj.title
+            dic_of_list['created_at'] = list_obj.created_at
+            dic_of_list['created_by_alias'] = user_profile_obj.alias
+            dic_of_list['created_by_id'] = user_profile_obj.id
+            dic_of_list['cards'] = []
+            list.append(dic_of_list)
+            dic_of_board['list'] = list
+            card_objs = Card.objects.filter(list=list_obj)
+            card_lst = []
+            for card_obj in card_objs:
+                dic_of_card = {}
+                dic_of_card['title'] = card_obj.title
+                dic_of_card['description'] = card_obj.description
+                dic_of_card['due_date'] = card_obj.due_date
+                dic_of_card['position'] = card_obj.position
+                dic_of_card['created_at'] = card_obj.created_at
+                dic_of_card['created_by_alias'] = user_profile_obj.alias
+                dic_of_card['created_by_id'] = user_profile_obj.id
+                card_lst.append(dic_of_card)
+                dic_of_list['cards'] = card_lst
+
+        return JsonResponse({'board_details': dic_of_board})
+
+    except Exception as e:
+        print "traceback erros", traceback.print_exc()
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
+
+
+
 

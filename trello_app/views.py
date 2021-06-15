@@ -1,8 +1,7 @@
 from trello_app.models import UserProfile, User, Bank, Board, List, Card, Attachement
-import json
+import json, traceback
 from django.http import JsonResponse
 from django.db import IntegrityError
-import traceback
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -12,10 +11,9 @@ from datetime import datetime
 '''
 status_codes:
     error from database: 1
-    object not found: 0
-
-    
+    object not found: 0    
 '''
+
 
 def is_blank(S):
     if len(S.strip(" ")) != 0:
@@ -27,8 +25,6 @@ def user(request):
     try:
         if request.method == 'POST':
             json_data = json.loads(request.body)
-            #print json_data
-            # {u'username': u'dhsharma_', u'is_superuser': True, u'password': u'1234', u'email': u'dhsharma27@gmail.com'}
             if is_blank(json_data.get("username")) or is_blank(json_data.get("password")) or is_blank(json_data.get("email")) or is_blank(json_data.get("firstname")) or is_blank(json_data.get("lastname")) or is_blank(json_data.get("is_superuser")):
                 return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected keys are: [username, email, password,first_name, last_name, is_superuser]', })
 
@@ -70,9 +66,6 @@ def user(request):
 @permission_classes((IsAuthenticated,))
 def profile(request, user_id):
     try:
-        print("30909835809385903853")
-        print(request.user)
-        print("0390-390-935-935-93-53")
         user_profile = UserProfile.objects.get(id=user_id)
         return JsonResponse({'status':200, 'username': user_profile.user.username,'email': user_profile.user.email, 'alias': user_profile.alias, 'firstname': user_profile.user.first_name,'lastname': user_profile.user.last_name,'workplace_name': user_profile.workplace_name,'is_superuser': user_profile.user.is_superuser})
 
@@ -80,16 +73,22 @@ def profile(request, user_id):
         return JsonResponse({'status': 0,'message': 'user not found'})
 
 
-@api_view(['GET','POST'])
+@api_view(['GET','POST','DELETE'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 def bank_details(request):
     try:
+        if request.method == 'DELETE':
+            user_profile = UserProfile.objects.get(user=request.user)
+            bank_details = Bank.objects.get(user_profile=user_profile)
+            bank_details.delete()
+            return JsonResponse({'status': 200, 'message': 'bank details deleted successfully'})
+
         if request.method == 'POST':
             json_data = json.loads(request.body)
             print json_data
             if is_blank(json_data.get("card_holder_name")) or is_blank(json_data.get("cvv")) or is_blank(json_data.get("expiry_date")):
-                return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected keys are: [card_holder_name, cvv, expiry_date]'})
+                return JsonResponse({'status': 500, 'status_code': -1, 'message': "expected keys are: [card_holder_name, cvv, expiry_date]"})
 
             user_profile = UserProfile.objects.get(user=request.user)
 
@@ -204,7 +203,6 @@ def create_card(request, lst_id):
     try:
         if request.method == 'POST':
             json_data = json.loads(request.body)
-            print json_data
             if is_blank(json_data.get("title")):
                 return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected key in JSON:["title"]'})
 
@@ -302,7 +300,6 @@ def change_card_position(request, card_id):
         for i in cards_in_destination_lst:
             i.position += 1
             i.save()
-            print "i is saving"
 
         card_obj.position = destination_position
         card_obj.list = destination_list_object
@@ -318,7 +315,7 @@ def change_card_position(request, card_id):
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
 
 
-@api_view(['GET','POST'])
+@api_view(['GET','DELETE'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 def board_details(request, board_id):
@@ -364,5 +361,55 @@ def board_details(request, board_id):
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
 
 
+@api_view(['GET'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def card_details(request, card_id):
+    try:
+        user_profile_obj = UserProfile.objects.get(user=request.user)
+        card_obj = Card.objects.get(id=card_id)
+        card_detail_obj = {}
+        card_detail_obj['title'] = card_obj.title
+        card_detail_obj['description'] = card_obj.description
+        card_detail_obj['due_date'] = card_obj.due_date
+        card_detail_obj['position'] = card_obj.position
+        card_detail_obj['created_at'] = card_obj.created_at
+        card_detail_obj['created_by_alias'] = user_profile_obj.alias
+        card_detail_obj['created_by_id'] = user_profile_obj.id
+        card_detail_obj['attachments'] = user_profile_obj.id
+
+        attachments = Attachement.objects.filter(card= card_obj)
+        for attachment in attachments:
+            attach = {'id': attachment.id, 'url': attachment.url}
+            card_detail_obj['attachments'].append(attach)
+        return JsonResponse({'card_details': card_detail_obj})
+
+    except Exception as e:
+        print "traceback erros", traceback.print_exc()
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
 
 
+@api_view(['GET','DELETE'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def list_details(request, list_id):
+    try:
+        user_profile_obj = UserProfile.objects.get(user=request.user)
+        if request.method == 'DELETE':
+            list_obj = List.objects.get(id=list_id)
+            if list_obj.created_by.id == user_profile_obj.id:
+                list_obj.delete()
+            else:
+                return JsonResponse({'status': 500, 'status_code':5, 'message': 'only owner can delete the list'})
+            return JsonResponse({'status': 200, 'message': 'list deleted successfully'})
+        list_obj = List.objects.get(id=list_id)
+        dic_of_list = {}
+        dic_of_list['title'] = list_obj.title
+        dic_of_list['created_at'] = list_obj.created_at
+        dic_of_list['created_by_alias'] = user_profile_obj.alias
+        dic_of_list['created_by_id'] = user_profile_obj.id
+        return JsonResponse({'list details': dic_of_list})
+
+    except Exception as e:
+        print "traceback erros", traceback.print_exc()
+        return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})

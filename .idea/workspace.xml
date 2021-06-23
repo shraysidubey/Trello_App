@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1c72fed-6efe-4de9-894b-56a617263ac0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/trello.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trello_app/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trello_app/tests/tests_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trello_app/tests/tests_views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trello_app/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/trello_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello_app/tests/tests_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/trello_app/tests/non_tests_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trello_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/trello_app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,10 +19,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trello_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+            <state relative-caret-position="145">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#684#868#0" />
+                <element signature="e#1153#1517#0" />
+                <element signature="e#1550#1802#0" />
+                <element signature="e#1842#2071#0" />
               </folding>
             </state>
           </provider>
@@ -34,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trello_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+            <state relative-caret-position="357">
+              <caret line="191" column="87" selection-start-line="191" selection-start-column="87" selection-end-line="191" selection-end-column="87" />
               <folding>
                 <element signature="e#0#85#0" expanded="true" />
               </folding>
@@ -43,13 +43,68 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/trello_app/tests/tests_model.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trello/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="41" column="91" lean-forward="true" selection-start-line="41" selection-start-column="91" selection-end-line="41" selection-end-column="91" />
+            <state relative-caret-position="352">
+              <caret line="89" column="60" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trello_app/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trello_app/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/trello_app/tests/tests_views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="151" column="60" lean-forward="true" selection-start-line="151" selection-start-column="60" selection-end-line="151" selection-end-column="60" />
+              <folding>
+                <element signature="e#0#92#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db.sqlite3">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trello/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trello_app/tests/non_tests_model.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2114">
+              <caret line="144" column="35" lean-forward="true" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,11 +121,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>restframe</find>
-      <find>'rest_framework.authtoken'</find>
-      <find>/trello_app/api/v1/user</find>
-      <find>engines</find>
-      <find>AUTH_USER_MODEL</find>
       <find>create_auth_token</find>
       <find>user_profile</find>
       <find>created_by</find>
@@ -89,13 +139,18 @@
       <find>.delete()</find>
       <find>create_card</find>
       <find>delete</find>
-      <find>bank_details</find>
       <find>create_lst</find>
       <find>card_details</find>
       <find>list_details</find>
       <find>getUser</find>
       <find>null</find>
+      <find>pass</find>
       <find>created_at</find>
+      <find>is_blank</find>
+      <find>bank_details</find>
+      <find>client.get</find>
+      <find>save_userprofile</find>
+      <find>def board</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,7 +166,6 @@
         <option value="$PROJECT_DIR$/trello_app/migrations/0007_auto_20210613_1410.py" />
         <option value="$PROJECT_DIR$/trello_app/migrations/0007_auto_20210613_1438.py" />
         <option value="$PROJECT_DIR$/trello_app/admin.py" />
-        <option value="$PROJECT_DIR$/trello_app/models.py" />
         <option value="$PROJECT_DIR$/trello_app/urls.py" />
         <option value="$PROJECT_DIR$/trello/test.py" />
         <option value="$PROJECT_DIR$/tests.py" />
@@ -119,8 +173,11 @@
         <option value="$PROJECT_DIR$/trello_app/tests.py" />
         <option value="$PROJECT_DIR$/trello_app/tests/tests.py" />
         <option value="$PROJECT_DIR$/trello_app/tests/model_tests.py" />
-        <option value="$PROJECT_DIR$/trello_app/views.py" />
         <option value="$PROJECT_DIR$/trello_app/tests/tests_model.py" />
+        <option value="$PROJECT_DIR$/trello_app/tests/non_tests_model.py" />
+        <option value="$PROJECT_DIR$/trello_app/models.py" />
+        <option value="$PROJECT_DIR$/trello_app/views.py" />
+        <option value="$PROJECT_DIR$/trello_app/tests/tests_views.py" />
       </list>
     </option>
   </component>
@@ -206,9 +263,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11755952" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14806548" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -219,7 +275,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49853587" weight="0.2749591" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49853587" visible="true" weight="0.7348609" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5014641" side_tool="true" weight="0.51184833" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -250,25 +306,8 @@
     <entry file="file://$PROJECT_DIR$/trello/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/trello/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="89" column="60" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/trello_app/migrations/0002_auto_20210611_1425.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trello/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/django/db/backends/utils.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -323,7 +362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db.sqlite3" />
     <entry file="file://$PROJECT_DIR$/trello/test.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -350,16 +388,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trello_app/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -370,32 +398,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trello_app/views.py">
+    <entry file="file://$PROJECT_DIR$/trello/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#0#85#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trello_app/models.py">
+    <entry file="file://$PROJECT_DIR$/trello_app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trello/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        <state relative-caret-position="352">
+          <caret line="89" column="60" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trello_app/tests/non_tests_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2114">
+          <caret line="144" column="35" lean-forward="true" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trello_app/tests/tests_model.py">
+    <entry file="file://$PROJECT_DIR$/db.sqlite3">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trello_app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="41" column="91" lean-forward="true" selection-start-line="41" selection-start-column="91" selection-end-line="41" selection-end-column="91" />
+        <state relative-caret-position="145">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#684#868#0" />
+            <element signature="e#1153#1517#0" />
+            <element signature="e#1550#1802#0" />
+            <element signature="e#1842#2071#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trello_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="191" column="87" selection-start-line="191" selection-start-column="87" selection-end-line="191" selection-end-column="87" />
+          <folding>
+            <element signature="e#0#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trello_app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trello_app/tests/tests_views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="151" column="60" lean-forward="true" selection-start-line="151" selection-start-column="60" selection-end-line="151" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#92#0" expanded="true" />
           </folding>
         </state>
       </provider>

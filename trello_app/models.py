@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
+def create_auth_token(sender, instance=None, created=False, **kwargs):     # created --> if object of user(any model) is not created it will give you false
     if created:
         Token.objects.create(user=instance)
 

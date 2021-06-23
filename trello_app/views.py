@@ -16,6 +16,8 @@ status_codes:
 
 
 def is_blank(S):
+    if S == None:
+        return True
     if len(S.strip(" ")) != 0:
         return False
     return True
@@ -24,18 +26,19 @@ def is_blank(S):
 def user(request):
     try:
         if request.method == 'POST':
+            #print "request.body", request.body                    # json.loads expect string
             json_data = json.loads(request.body)
-            if is_blank(json_data.get("username")) or is_blank(json_data.get("password")) or is_blank(json_data.get("email")) or is_blank(json_data.get("firstname")) or is_blank(json_data.get("lastname")) or is_blank(json_data.get("is_superuser")):
-                return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected keys are: [username, email, password,first_name, last_name, is_superuser]', })
-
+            if is_blank(json_data.get("username")) or is_blank(json_data.get("password")) or \
+                    is_blank(json_data.get("email")) or is_blank(json_data.get("firstname")) or \
+                    is_blank(json_data.get("lastname")) or is_blank(json_data.get("is_superuser")) or \
+                    is_blank(json_data.get("alias")) or is_blank(json_data.get("workplace_name")):
+                return JsonResponse({'status': 500, 'status_code': -1, 'message': 'expected keys are: [username, email,password,first_name, last_name, is_superuser, alias, workplace_name]'})
             user = User()
             user.username = json_data.get("username")
             user.set_password(json_data.get("password"))
             user.email = json_data.get("email")
             user.first_name = json_data.get("firstname")
             user.last_name = json_data.get("lastname")
-            #print "qbienijenone", json_data.get("is_superuser")
-            #print str(json_data.get("is_superuser") == "True")
             if json_data.get("is_superuser") == "True":
                 user.is_superuser = True
             else:
@@ -85,23 +88,19 @@ def bank_details(request):
             return JsonResponse({'status': 200, 'message': 'bank details deleted successfully'})
 
         if request.method == 'POST':
-            json_data = json.loads(request.body)
-            print json_data
-            if is_blank(json_data.get("card_holder_name")) or is_blank(json_data.get("cvv")) or is_blank(json_data.get("expiry_date")):
+            payload = json.loads(request.body)
+            if is_blank(payload.get("card_holder_name")) or is_blank(payload.get("cvv")) or is_blank(payload.get("expiry_date")):
                 return JsonResponse({'status': 500, 'status_code': -1, 'message': "expected keys are: [card_holder_name, cvv, expiry_date]"})
 
             user_profile = UserProfile.objects.get(user=request.user)
-
-            bank_details = Bank()
-            bank_details.card_holder_name = json_data.get("card_holder_name")
-            bank_details.cvv = json_data.get("cvv")
-            date_string = json_data.get("expiry_date")
+            date_string = payload.get("expiry_date")
             date_format = "%Y-%m"
             date_object = datetime.strptime(date_string, date_format)
-            bank_details.expiry_date = date_object
-            bank_details.user_profile = user_profile
-            bank_details.save()
-            print "successfully saved"
+
+            Bank.objects.create(card_holder_name = payload.get("card_holder_name"), cvv = payload.get("cvv"),
+                                user_profile = user_profile, expiry_date = date_object)
+
+            print "successfully saved bank details"
             return JsonResponse({'status': 200,  'message': 'successfully saved'})
 
         if request.method == 'GET':
@@ -162,7 +161,7 @@ def board(request):
             list_obj_3.save()
 
             print "successfully saved"
-            return JsonResponse({'status':200, 'message':"successfully saved"})
+            return JsonResponse({'status':200, 'message':"successfully saved", 'id': board.id})
 
     except Exception as e:
         #print "ERROR TRACEBACK ", traceback.print_exc()
@@ -190,7 +189,7 @@ def create_lst(request, board_id):
             list_obj.board = board
             list_obj.save()
 
-            return JsonResponse({'status': 200, 'message': "successfully saved"})
+            return JsonResponse({'status': 200, 'message': "successfully saved", 'id': list_obj.id})
 
     except Exception as e:
         return JsonResponse({'status': 500, 'status_code': -1, 'message': 'unknown error'})
@@ -408,7 +407,7 @@ def list_details(request, list_id):
         dic_of_list['created_at'] = list_obj.created_at
         dic_of_list['created_by_alias'] = user_profile_obj.alias
         dic_of_list['created_by_id'] = user_profile_obj.id
-        return JsonResponse({'list details': dic_of_list})
+        return JsonResponse({'list_details': dic_of_list, 'id':list_obj.id})
 
     except Exception as e:
         print "traceback erros", traceback.print_exc()
